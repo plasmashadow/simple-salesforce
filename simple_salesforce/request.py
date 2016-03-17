@@ -20,10 +20,11 @@ try:
         return url + urlencode(kwargs)
 
     def get(url, headers={}, params={}):
-            return urlfetch.fetch(url, method=urlfetch.GET, headers=headers, params=params)
+        url = url_concat(url, **params)
+        return urlfetch.fetch(url, method=urlfetch.GET, headers=headers)
 
     def post(url, headers={}, data=None):
-            return urlfetch.fetch(url, method=urlfetch.POST, headers=headers, payload=data)
+        return urlfetch.fetch(url, method=urlfetch.POST, headers=headers, payload=data)
 
 except ImportError:
 
