@@ -4,8 +4,7 @@
 # has to be defined prior to login import
 DEFAULT_API_VERSION = '29.0'
 
-
-import requests
+import request as requests
 import json
 
 try:
@@ -127,7 +126,7 @@ class Salesforce(object):
         else:
             self.auth_site = 'https://login.salesforce.com'
 
-        self.request = session or requests.Session()
+        self.request = session or requests
         self.request.proxies = self.proxies
         self.headers = {
             'Content-Type': 'application/json',
@@ -445,7 +444,7 @@ class SFType(object):
         """
         self.session_id = session_id
         self.name = object_name
-        self.request = requests.Session()
+        self.request = requests
         self.request.proxies = proxies
 
         self.base_url = (
