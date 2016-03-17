@@ -53,8 +53,8 @@ try:
         result = urlfetch.fetch(url, method=urlfetch.POST, headers=headers, payload=data)
         return Response(result)
 
-    def request(method, url, headers={}, **kwargs):
-        result = urlfetch.fetch(url, method=_method[method], headers=headers, **kwargs)
+    def request(method, url, headers={}, data=None, **kwargs):
+        result = urlfetch.fetch(url, method=_method[method], headers=headers, payload=data, **kwargs)
         return Response(result)
 
 except ImportError:
