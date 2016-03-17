@@ -13,6 +13,14 @@ try:
         from urllib.parse import urlencode
 
 
+    _method = {
+        "GET": urlfetch.GET,
+        "POST": urlfetch.POST,
+        "PUT": urlfetch.PUT,
+        "DELETE": urlfetch.DELETE
+    }
+
+
     class Response(object):
 
         def __init__(self, response):
@@ -45,9 +53,14 @@ try:
         result = urlfetch.fetch(url, method=urlfetch.POST, headers=headers, payload=data)
         return Response(result)
 
+    def request(method, url, headers={}, **kwargs):
+        result = urlfetch.fetch(url, method=_method[method], headers=headers, **kwargs)
+        return Response(result)
+
 except ImportError:
 
     import requests
 
     get = requests.get
     post = requests.post
+    request = requests.request
